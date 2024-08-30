@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Double Submit Approach{% endblock %}
+
+{% block body %}
+    <a href="{{ path('approach_lazy') }}">Lazy Approach</a>
+
+    <h1>Double Submit Approach</h1>
+    {{ form(form) }}
+
+    {% if name is not null %}
+        <h2 style="color: green;">Hi {{ name }}!</h2>
+    {% endif %}
+{% endblock %}

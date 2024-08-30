@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lazy Approach{% endblock %}
+
+{% block body %}
+    <a href="{{ path('approach_double_submit') }}">Double Submit Approach</a>
+
+    <h1>Lazy Approach</h1>
+    {{ form(form) }}
+
+    {% if name is not null %}
+        <h2 style="color: green;">Hi {{ name }}!</h2>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const field = document.getElementById('lazy_approach_form_name');
+        const token = document.getElementById('lazy_approach_form__token');
+        const submit = document.getElementById('lazy_approach_form_submit');
+
+        if(token && token.value === '') {
+            submit && (submit.disabled = true);
+
+            field && field.addEventListener('change', () => {
+
+                fetch('{{ path('approach_lazy') }}', {
+                    method: 'POST', body: 'token',
+                    credentials: 'same-origin',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+                    }
+                }).then(response => response.text()).then(tokenVal => {
+                    token.value = tokenVal;
+                    submit.disabled = false;
+                });
+            });
+        }
+    </script>
+{% endblock %}

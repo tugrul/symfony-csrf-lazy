@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List of CSRF Approaches{% endblock %}
+
+{% block body %}
+    <ol>
+        <li><a href="{{ path('approach_lazy') }}">Lazy Approach</a></li>
+        <li><a href="{{ path('approach_double_submit') }}">Double Submit Approach</a></li>
+    </ol>
+{% endblock %}
